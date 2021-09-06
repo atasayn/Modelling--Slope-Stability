@@ -333,53 +333,52 @@ CoordsY_2D = [CoordsY(:,1:5);CoordsY_Blue_in_Ellip(:,1:5)];
 
 %%
 % 
-% figure(1)
-% hold on
-% 
-% 
-% Below_Surface_X(1,1:5) = 0;
-% Below_Surface_Y(1,1:5) = 0;
-% Below_Surface_Z(1,1:5) = 0;
-% % 
-% % for i = 1: length( CoordsX_2D(:,1) )
-% %     z3D  = real( -L3*sqrt(1-(((CoordsX_2D (i,:)-x0_el).^2)/ (L1^2)) - (((CoordsY_2D(i,:) -y0_el).^2)/ (L2^2))))+z0_el;
-% %     
-% %     F = 160*CoordsX_2D(i,:) - 240*z3D + 960; % Equation of Plane
-% %     
-% %     
-% %     if all(F>=0.5 & z3D <= z4)
-% %         plot3 (CoordsX_2D (i,:),CoordsY_2D (i,:),z3D,'b','LineWidth',2)
-% %         Below_Surface_X(end+1,:)= CoordsX_2D (i,:);
-% %         Below_Surface_Y(end+1,:)= CoordsY_2D (i,:);
-% %         Below_Surface_Z(end+1,:)= z3D;
-% %         hold on
-% %     end
-% %    
-% % end
-% %  CoordsX_2D = Below_Surface_X(2:end,:);
-% %     
-% %  CoordsY_2D = Below_Surface_Y(2:end,:);
-% %     
-% %  CoordsZ_2D = Below_Surface_Z(2:end,:);
-%  
+ figure(1)
+ hold on
+ 
+ 
+ Below_Surface_X(1,1:5) = 0;
+ Below_Surface_Y(1,1:5) = 0;
+ Below_Surface_Z(1,1:5) = 0;
+ 
+ for i = 1: length( CoordsX_2D(:,1) )
+     z3D  = real( -L3*sqrt(1-(((CoordsX_2D (i,:)-x0_el).^2)/ (L1^2)) - (((CoordsY_2D(i,:) -y0_el).^2)/ (L2^2))))+z0_el;
+     
+     F = 160*CoordsX_2D(i,:) - 240*z3D + 960; % Equation of Plane
+     
+     
+     if all(F>=0.5 & z3D <= z4)
+         plot3 (CoordsX_2D (i,:),CoordsY_2D (i,:),z3D,'b','LineWidth',2)
+         Below_Surface_X(end+1,:)= CoordsX_2D (i,:);
+         Below_Surface_Y(end+1,:)= CoordsY_2D (i,:);
+         Below_Surface_Z(end+1,:)= z3D;
+         hold on
+     end
+    
+ end
+  CoordsX_2D = Below_Surface_X(2:end,:);
+     
+  CoordsY_2D = Below_Surface_Y(2:end,:);
+     
+  CoordsZ_2D = Below_Surface_Z(2:end,:);
+  
 %% Rotate and Add Coordinates to 3D Slope Stability Model
-% 
-% figure(1)
-% hold on
-% 
-% CoordsZ_2D = ones(size(CoordsX_2D)).*z0_el;
-% for i = 1 :length(CoordsX_2D(:,1))    
-%   
-%     % Square Coordinates in 3D Top
-%     Columns_3X_Top(i,1:5)= CoordsX_2D(i,:) ;
-%     Columns_3Y_Top(i,1:5)= CoordsY_2D(i,:) ;
-%     Columns_3Z_Top(i,1:5)= CoordsZ_2D(i,:);
-% %      plot3(Columns_3X_Top(i,1:5),Columns_3Y_Top(i,1:5),Columns_3Z_Top(i,1:5),'r','LineWidth',3)
-%     hold on
-% end
-% 
-% daspect([1 1 1])
-% hold off
+ 
+ figure(1)
+ hold on
+ 
+ CoordsZ_2D = ones(size(CoordsX_2D)).*z0_el;
+ for i = 1 :length(CoordsX_2D(:,1))    
+   
+     % Square Coordinates in 3D Top
+     Columns_3X_Top(i,1:5)= CoordsX_2D(i,:) ;
+     Columns_3Y_Top(i,1:5)= CoordsY_2D(i,:) ;
+     Columns_3Z_Top(i,1:5)= CoordsZ_2D(i,:);
+      plot3(Columns_3X_Top(i,1:5),Columns_3Y_Top(i,1:5),Columns_3Z_Top(i,1:5),'r','LineWidth',3)
+     hold on
+ end
+ daspect([1 1 1])
+ hold off
 
 
 %% Interpolation to the edge of Ellipsoid
