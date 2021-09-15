@@ -54,50 +54,50 @@ for i = 1 :length (xrange)
     A_3D_1 = [A2,A3];
     B_3D_1 = [B2,B3];
     
-%     count = 0;
-%     while true
-%         hold off
-%         figure(1)
-%         hold on
-%         % Vertical Interpolation 3D
-%         [row,col] = find (CoordsX_2D== A1);
-%         % Find Min and Max X in 1m width squares to limit interpolation
-%         %
-%         y_mid_vals = CoordsY_2D(row,col);
-%         
-%         if any(diff((y_mid_vals))==1)
-%             %  Find the number of 1m width squares to fill fap between A_3D
-%             mid_fac =unique(sort(y_mid_vals(:)))';
-%             A_3D = [ A_3D_1 A1.*ones(1,length(mid_fac)) A_3D_2];
-%             B_3D = [ fliplr(B_3D_1) mid_fac B_3D_2];
-%             ztemp  = real( -L3*sqrt(1-(((A_3D-x0_el).^2)/ (L1^2)) - (((B_3D-y0_el).^2)/ (L2^2))))+z0_el;
-%              plot3(A_3D,B_3D, ztemp,'LineWidth',2)
-%             hold on
-%         elseif all(diff((y_mid_vals)) < 1)
-%             mid_fac =unique(sort(y_mid_vals(:)))';
-%             A_3D = [ A_3D_1 A1.*ones(1,length(mid_fac)) A_3D_2];
-%             B_3D = [ fliplr(B_3D_1) mid_fac B_3D_2];
-%             ztemp  = real( -L3*sqrt(1-(((A_3D-x0_el).^2)/ (L1^2)) - (((B_3D-y0_el).^2)/ (L2^2))))+z0_el;
-%             plot3(A_3D,B_3D,ztemp,'LineWidth',2)
-%             hold on
-%         elseif any(diff((y_mid_vals)) > 1)
-%             mid_fac =unique(sort(y_mid_vals(:)))' ;
-%             temp = length(mid_fac)/2;
-%             mid_fac = [mid_fac(1:temp) NaN mid_fac(temp+1:end)];
-%             A_3D = [ A_3D_1  A1.*ones(1,length(mid_fac)) A_3D_2];
-%             B_3D = [ fliplr(B_3D_1) mid_fac B_3D_2];
-%             ztemp  = real(- L3*sqrt(1-(((A_3D-x0_el).^2)/ (L1^2)) - (((B_3D-y0_el).^2)/ (L2^2))))+z0_el;
-%             
-%             plot3(A_3D,B_3D,ztemp,'LineWidth',2)
-%             hold on
-%         end
-%         count=count+1;
-%         
-%         if count==1
-%             hold off
-%             break
-%         end
-%     end
+     count = 0;
+     while true
+         hold off
+         figure(1)
+         hold on
+         % Vertical Interpolation 3D
+         [row,col] = find (CoordsX_2D== A1);
+         % Find Min and Max X in 1m width squares to limit interpolation
+         %
+         y_mid_vals = CoordsY_2D(row,col);
+         
+         if any(diff((y_mid_vals))==1)
+             %  Find the number of 1m width squares to fill fap between A_3D
+             mid_fac =unique(sort(y_mid_vals(:)))';
+             A_3D = [ A_3D_1 A1.*ones(1,length(mid_fac)) A_3D_2];
+             B_3D = [ fliplr(B_3D_1) mid_fac B_3D_2];
+             ztemp  = real( -L3*sqrt(1-(((A_3D-x0_el).^2)/ (L1^2)) - (((B_3D-y0_el).^2)/ (L2^2))))+z0_el;
+              plot3(A_3D,B_3D, ztemp,'LineWidth',2)
+             hold on
+         elseif all(diff((y_mid_vals)) < 1)
+             mid_fac =unique(sort(y_mid_vals(:)))';
+             A_3D = [ A_3D_1 A1.*ones(1,length(mid_fac)) A_3D_2];
+             B_3D = [ fliplr(B_3D_1) mid_fac B_3D_2];
+             ztemp  = real( -L3*sqrt(1-(((A_3D-x0_el).^2)/ (L1^2)) - (((B_3D-y0_el).^2)/ (L2^2))))+z0_el;
+             plot3(A_3D,B_3D,ztemp,'LineWidth',2)
+             hold on
+         elseif any(diff((y_mid_vals)) > 1)
+             mid_fac =unique(sort(y_mid_vals(:)))' ;
+            temp = length(mid_fac)/2;
+             mid_fac = [mid_fac(1:temp) NaN mid_fac(temp+1:end)];
+             A_3D = [ A_3D_1  A1.*ones(1,length(mid_fac)) A_3D_2];
+             B_3D = [ fliplr(B_3D_1) mid_fac B_3D_2];
+             ztemp  = real(- L3*sqrt(1-(((A_3D-x0_el).^2)/ (L1^2)) - (((B_3D-y0_el).^2)/ (L2^2))))+z0_el;
+             
+             plot3(A_3D,B_3D,ztemp,'LineWidth',2)
+             hold on
+         end
+         count=count+1;
+         
+         if count==1
+             hold off
+             break
+         end
+     end
 end
 
 
